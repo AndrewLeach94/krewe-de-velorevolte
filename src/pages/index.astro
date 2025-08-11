@@ -1,0 +1,176 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<header>
+			<h1>Krewe de Vélorévolte</h1>
+			<p>Ride! Revel! Rally!</p>
+			<div class="button-container">
+				<a class="btn-primary">Join the Krewe</a>
+				<a class="btn-secondary">Our Mission</a>
+			</div>
+		</header>
+		<section>
+			<h2>About Our Krewe</h2>
+			<b>Membership Open Now!</b>
+			<p>
+
+				At Krewe de Vélorévolte, we celebrate the vibrant diversity of our members—their backgrounds, experiences, and identities. We’re more than just a krewe; we’re a community that fosters connection, creativity, and fosters change for better bicycle infrastructure. 
+
+				Join us in building a movement—one ride, one parade, and one rally at a time!
+
+				<br>
+				<br>
+
+				<a href="https://www.instagram.com/krewedesbicyclettes/" target="_blank">Follow us on Instagram</a> for updates and events as  information becomes available. Laissez les bons temps rouler!
+			</p>
+		</section>
+
+		<section>
+			<h2>Membership Options</h2>
+			<div class="card-container">
+
+				<div class="card">
+					<h3>Parade Participant</h3>
+					<p>
+						Join us in bringing the spirit of Krewe des Bicyclettes to life! As a parade participant, you’ll have the opportunity to ride, dance, and showcase our krewe’s energy in parades during Carnival. You’ll also be a valued part of our broader community, with access to general membership activities.
+						<br>
+						<br>
+						To be a parade participant, you must:
+						<ul>
+							<li>Share our passion for bicycling, creativity, and community</li>
+							<li>Complete the application process</li>
+							<li>Pay membership dues</li>
+							<li>Attend at least 50% of costume and float builds</li>
+							<li>Be a Louisiana resident</li>
+							<li>Be 21 or older</li>
+						</ul>
+					</p>
+				</div>
+
+				<div class="card">
+					<h3>General Membership</h3>
+					<p>
+						Don’t want to parade during Carnival? No problem! As a general member of Krewe des Bicyclettes, you’ll be part of a vibrant community that celebrates cycling, creativity, and camaraderie. Join us for social gatherings like soirées, parties, our book club, movie nights, and other community events—all while supporting our Krewe and the larger bicycle movement in New Orleans.
+						<br>
+						<br>
+						To be a general member, you must:
+						<ul>
+							<li>Complete the application process</li>
+							<li>Pay membership dues</li>
+							<li>Attend any required info sessions</li>
+							<li>Be a Louisiana resident</li>
+							<li>Be 21 or older</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact-section">
+			<h2>Contact Us if You're Interested in Joining!</h2>
+			<form>
+				<label>First Name*
+					<input type="text"></input>
+				</label>
+				<label>Last Name*
+					<input type="text"></input>
+				</label>
+				<label class="full-row">Email*
+					<input type="email"></input>
+				</label>
+				<label class="checkbox-label full-row">Join our email list for news and updates
+					<input type="checkbox"></input>
+				</label>
+				<label class="full-row">Subject
+					<input type="text"></input>
+				</label>
+				<label class="full-row">Message
+					<textarea></textarea>
+				</label>
+				<button type="submit" class="btn-primary">Submit</button>
+			</form>
+		</section>
+
+		<Footer />
+	</body>
+</html>
+
+<style lang="scss">
+@use '../styles/mixins.scss' as *;
+
+	header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-self: center;
+		text-align: center;
+		@include globalPadding;
+		p {
+			font-size: 2.3rem;
+		}
+	}
+
+	.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 1rem;
+		}
+
+		section {
+			padding-top: 2rem;
+			padding-bottom: 4rem;
+			@include globalPadding;
+			h2 {
+				padding-top: 1.5rem;
+				text-align: center;
+			}
+		}
+
+		section:nth-of-type(2) {
+			background-color: var(--color-black-lighter);
+		}
+
+		.card-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 3rem;
+		}
+
+		.card {
+			background-color: var(--color-black);
+			padding: 1.75rem;
+			border: solid 1px grey;
+			border-radius: 0.5rem;
+			h3 {
+				margin-top: 0;
+				margin-bottom: 1.25rem;
+				text-align: center;
+			}
+		}
+
+		@include tabletDown {
+			.card-container {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		@include mobileOnly {
+			.card {
+				padding: 1rem;
+				font-size: 1rem;
+			}
+		}
+
+</style>

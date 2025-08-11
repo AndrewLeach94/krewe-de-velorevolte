@@ -1,0 +1,66 @@
+@use 'mixins.scss' as *;
+
+label {
+  display: flex;
+  flex-direction: column;
+  &.full-row {
+    grid-column: 1 / span 2;
+  }
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--color-black-lighter);
+  padding: 2.5rem;
+  border-radius: 0.5rem;
+  gap: 1.5rem;
+  button[type='submit'] {
+    grid-column: 1 / span 2;
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+input {
+  background: var(--color-black);
+  padding: 0.75rem;
+  border: solid 1px var(--color-black-lighter);
+  align-items: flex-start;
+  color: var(--color-white);
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  font-family: 'Fraunces', serif;
+}
+
+textarea {
+  background: var(--color-black);
+  min-height: 8rem;
+  border: none;
+  color: var(--color-white);
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-family: 'Fraunces', serif;
+}
+
+.checkbox-label {
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+  input {
+    width: 1.5rem;
+    margin-right: 1rem;
+    height: 1.5rem;
+  }
+}
+
+@include mobileOnly {
+  form {
+    grid-template-columns: 1fr;
+  }
+  label {
+    &.full-row {
+      grid-column: auto;
+    }
+  }
+}
