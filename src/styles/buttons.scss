@@ -1,4 +1,5 @@
 .btn-primary {
+  box-sizing: border-box;
   background-color: var(--color-primary);
   padding: 1rem;
   color: var(--color-white);
@@ -7,7 +8,8 @@
 }
 
 .btn-secondary {
-  border: solid 1px var(--color-primary);
+  box-sizing: border-box;
+  border: solid 1px var(--color-white);
   padding: 1rem;
-  color: var(--color-primary);
+  color: var(--color-white);
 }

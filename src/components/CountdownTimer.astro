@@ -1,0 +1,114 @@
+---
+// Target countdown date
+const targetDate = new Date('2026-01-30T10:00:00').getTime();
+---
+
+<div class="countdown">
+  <p>We Roll On January 30th, 2026</p>
+
+  <div class="countdown-grid">
+    <div class="countdown-item">
+      <div id="days" class="countdown-value">0</div>
+      <div class="countdown-label">Days</div>
+    </div>
+    <div class="countdown-item">
+      <div id="hours" class="countdown-value">0</div>
+      <div class="countdown-label">Hours</div>
+    </div>
+    <div class="countdown-item">
+      <div id="minutes" class="countdown-value">0</div>
+      <div class="countdown-label">Minutes</div>
+    </div>
+    <div class="countdown-item">
+      <div id="seconds" class="countdown-value">0</div>
+      <div class="countdown-label">Seconds</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const targetDate = new Date('2026-01-30T10:00:00').getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    const daysEl = document.getElementById('days') as HTMLElement;
+    const hoursEl = document.getElementById('hours') as HTMLElement;
+    const minutesEl = document.getElementById('minutes') as HTMLElement;
+    const secondsEl = document.getElementById('seconds') as HTMLElement;
+
+    if (difference > 0) {
+        daysEl.textContent = Math.floor(difference / (1000 * 60 * 60 * 24)).toString();
+        hoursEl.textContent = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString();
+        minutesEl.textContent = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)).toString();
+        secondsEl.textContent = Math.floor((difference % (1000 * 60)) / 1000).toString();
+    } else {
+        document.querySelectorAll('.countdown-value').forEach(el => el.textContent = '0');
+    }
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+<style lang="scss">
+  @use '../styles/mixins.scss' as *;
+
+  .countdown {
+    box-sizing: border-box;
+    color: var(--color-white);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    width: 100%;
+
+  h3 {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+    font-weight: 600;
+  }
+
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .countdown-item {
+    color: var(--color-white); // matching primary color
+    border-radius: 0.75rem;
+    padding: 1rem;
+    border: solid 1px rgba(255,255,255,0.2);
+
+    .countdown-value {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .countdown-label {
+      font-size: 1rem;
+    }
+  }
+}
+
+@include tabletDown {
+  .countdown {
+    backdrop-filter: blur(6px);
+    .countdown-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+</style>

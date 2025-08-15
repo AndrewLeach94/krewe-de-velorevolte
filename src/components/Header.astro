@@ -5,11 +5,12 @@ import HeaderLink from './HeaderLink.astro';
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<!-- <h2><a href="/">{SITE_TITLE}</a></h2> -->
+		<img src="src/assets/logo.webp" alt="Logo" />
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<!-- <HeaderLink href="/mission">Our Mission</HeaderLink> -->
-			 <a href="#contact-section">Contact Us</a>
+			 <a href="#contact-us">Contact Us</a>
 			<HeaderLink href="/join">Join the Krewe</HeaderLink>
 			<!-- <HeaderLink href="/blog">Blog</HeaderLink> -->
 		</div>
@@ -23,7 +24,10 @@ import HeaderLink from './HeaderLink.astro';
 		margin: 0;
 		padding: 0 1em;
 		background: var(--color-black-lighter);
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		box-shadow: 0 2px 8px var(--color-black);
+		top: 0;
+		width: 100%;
+		box-shadow: 1px 1px 12px rgb(46, 46, 46);
 	}
 	h2 {
 		margin: 0;
@@ -48,6 +52,10 @@ import HeaderLink from './HeaderLink.astro';
 	nav a.active {
 		text-decoration: none;
 		border-bottom-color: var(--accent);
+	}
+	img {
+		width: 6rem;
+		height: auto;
 	}
 	.social-links,
 	.social-links a {
