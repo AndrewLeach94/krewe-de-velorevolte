@@ -98,24 +98,24 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 		<section id="contact-us">
 			<h2>Contact Us if You're Interested in Joining!</h2>
-			<form>
-				<label>First Name*
-					<input type="text"></input>
+			<form method="POST">
+				<label>First Name
+					<input type="text" required></input>
 				</label>
-				<label>Last Name*
-					<input type="text"></input>
+				<label>Last Name
+					<input type="text" required></input>
 				</label>
-				<label class="full-row">Email*
-					<input type="email"></input>
+				<label class="full-row">Email
+					<input type="email" required></input>
 				</label>
 				<label class="checkbox-label full-row">Join our email list for news and updates
 					<input type="checkbox"></input>
 				</label>
 				<label class="full-row">Subject
-					<input type="text"></input>
+					<input type="text" required></input>
 				</label>
 				<label class="full-row">Message
-					<textarea></textarea>
+					<textarea required></textarea>
 				</label>
 				<button type="submit" class="btn-primary">Submit</button>
 			</form>
