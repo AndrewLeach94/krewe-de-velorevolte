@@ -5,7 +5,9 @@ const today = new Date();
 <footer>
 	&copy; {today.getFullYear()} Krewe de Vélorévolte. All rights reserved.
 </footer>
-<style>
+<style lang="scss">
+	@use '../styles/mixins.scss' as *;
+
 	footer {
 		display: flex;
 		justify-content: center;
@@ -14,5 +16,13 @@ const today = new Date();
 		background-color: var(--color-black-lighter);
 		color: var(--color-white);
 		font-size: 1rem;
+		@include globalPadding;
+	}
+
+	@include mobileOnly {
+		footer {
+			text-align: center;
+			font-size: 1rem;
+		}
 	}
 </style>
