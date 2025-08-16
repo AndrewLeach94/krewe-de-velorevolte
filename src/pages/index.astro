@@ -18,10 +18,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			<p>Ride! Revel! Rally!</p>
 			<div class="button-container">
 				<a class="btn-primary" href="#contact-us">Join the Krewe</a>
-				<a class="btn-secondary">Our Mission</a>
+				<a class="btn-secondary" href="#mission">Our Mission</a>
 			</div>
 			<video autoplay muted loop>
-				<source src="src/assets/video/hero-video.webm" type="video/webm" />
+				<source src="src/assets/video/hero-video.mp4" type="video/mp4" />
 				Your browser does not support the video tag.
 			</video>
 			<CountdownTimer />
@@ -29,7 +29,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 		
 		<section id="about-section">
-			<img src="src/assets/BikesOnTheBrain.webp" alt="Bikes on the Brain" />
+			<img src="src/assets/BikesOnTheBrain.webp" alt="Bikes on the Brain" width="328" height="528"/>
 			<div class="copy-container">
 				<h2>Membership Open Now!</h2>
 				<p>
@@ -45,6 +45,16 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			</div>
 		</section>
 
+		<section id="mission">
+			<h2>Our Mission</h2>
+			<p> Krewe de Vélorévolte exists to <em>Ride! Revel! and Rally!</em></p>
+			<ul>
+				<li>🚲 <b>RIDE!</b> We are a krewe of dedicated bicycle commuters, united by our belief in the bicycle as a powerful alternative to cars. Whether for work, play, or the simple joy of the ride, we embrace two wheels as a way of life.</li>
+				<li>🎭 <b>REVEL!</b> Carnival is just one facet of our revelry! We celebrate bicycle culture all year long with group rides and gatherings. One of our favorites? Fête Ghisallo! A ride to honor the patron saint of cyclists.</li>
+				<li>⚡ <b>RALLY!</b> Krewe de Vélorévolte supports the grassroots movement transforming New Orleans into a city built for bicycles. We mobilize bicyclists into a force for advocacy, pushing for safer streets and better infrastructure.</li>
+			</ul>
+		</section>
+
 		<section>
 			<h2>Membership Options</h2>
 			<div class="card-container">
@@ -52,7 +62,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				<div class="card">
 					<h3>Parade Participant</h3>
 					<p>
-						Join us in bringing the spirit of Krewe des Bicyclettes to life! As a parade participant, you’ll have the opportunity to ride, dance, and showcase our krewe’s energy in parades during Carnival. You’ll also be a valued part of our broader community, with access to general membership activities.
+						Join us in bringing the spirit of Krewe de Vélorévolte to life! As a parade participant, you’ll have the opportunity to ride, dance, and showcase our krewe’s energy in parades during Carnival. You’ll also be a valued part of our broader community, with access to general membership activities.
 						<br>
 						<br>
 						To be a parade participant, you must:
@@ -70,7 +80,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				<div class="card">
 					<h3>General Membership</h3>
 					<p>
-						Don’t want to parade during Carnival? No problem! As a general member of Krewe des Bicyclettes, you’ll be part of a vibrant community that celebrates cycling, creativity, and camaraderie. Join us for social gatherings like soirées, parties, our book club, movie nights, and other community events—all while supporting our Krewe and the larger bicycle movement in New Orleans.
+						Don’t want to parade during Carnival? No problem! As a general member of Krewe de Vélorévolte, you’ll be part of a vibrant community that celebrates cycling, creativity, and camaraderie. Join us for social gatherings like soirées, parties, our book club, movie nights, and other community events—all while supporting our Krewe and the larger bicycle movement in New Orleans.
 						<br>
 						<br>
 						To be a general member, you must:
@@ -187,6 +197,22 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			img {
 				width: 100%;
 				height: auto;
+			}
+		}
+
+		#mission {
+			h2 {
+				margin-bottom: 0.5rem;
+			}
+			p {
+				text-align: center;
+			}
+			ul {
+				padding-left: 0;
+			}
+			li {
+				margin: 2.5rem 0;
+				list-style: none;
 			}
 		}
 
