@@ -1,0 +1,21 @@
+@use 'buttons.scss';
+@use 'typography.scss';
+@use 'mixins.scss';
+@use 'forms.scss';
+
+:root {
+  --color-primary: #aa574b ;
+  --color-white: #efdcd3 ;
+  --color-black: #332a1a;
+  --color-black-light: #553f2e;
+  --color-black-lighter: #7c5b41;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-black);
+  margin: 0;
+}
