@@ -6,8 +6,8 @@
   <div class="container">
     <div class="nav-brand">
       <a href="/" class="logo">
-		<img src="/src/assets/logo.webp" alt="Krewe de Vélorévolte Logo" width="80" height="80">
-	</a>
+    <img src="/src/assets/logo.webp" alt="Krewe de Vélorévolte Logo" width="5rem" height="5rem">
+  </a>
     </div>
     
     <nav class="nav-desktop">
@@ -15,6 +15,15 @@
       <a href="#mission" class="nav-link">Our Mission</a>
       <a href="#contact-us" class="nav-link">Contact Us</a>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5YbVz6M4kxTwqSqTzIThkG7RFaCDuVYNLHTk5804mjU7ZWw/viewform" target="_blank" class="nav-link">Apply to Join</a>
+      
+      <!-- Pay Dues Dropdown -->
+      <div class="dropdown">
+        <button class="nav-link dropdown-toggle">Pay Dues ▾</button>
+        <div class="dropdown-menu">
+        <a href="https://www.paypal.com/ncp/payment/AZV62D7J47QL4" target="_blank" class="dropdown-item">Parade Participant</a>
+        <a href="https://www.paypal.com/ncp/payment/37LPFADJNCTN6" target="_blank" class="dropdown-item">General Membership</a>
+        </div>
+      </div>
     </nav>
     
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -29,11 +38,20 @@
     <a href="#mission" class="nav-link-mobile">Our Mission</a>
     <a href="#contact-us" class="nav-link-mobile">Contact Us</a>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5YbVz6M4kxTwqSqTzIThkG7RFaCDuVYNLHTk5804mjU7ZWw/viewform" target="_blank" class="nav-link-mobile">Apply to Join</a>
+
+        <!-- Mobile Pay Dues Dropdown -->
+    <div class="dropdown-mobile">
+      <button class="nav-link-mobile dropdown-toggle" data-dropdown="mobile">Pay Dues ▾</button>
+      <div class="dropdown-menu-mobile">
+        <a href="https://www.paypal.com/ncp/payment/AZV62D7J47QL4" target="_blank" class="dropdown-item-mobile">Parade Participant</a>
+        <a href="https://www.paypal.com/ncp/payment/37LPFADJNCTN6" target="_blank" class="dropdown-item-mobile">General Membership</a>
+      </div>
+    </div>
   </nav>
 </header>
 
 <style lang="scss">
-	@use '../styles/mixins.scss' as *;
+  @use '../styles/mixins.scss' as *;
 
   .header {
     position: fixed;
@@ -56,18 +74,18 @@
   }
   
   .nav-brand .logo {
-	width: 5rem;
-	height: 5rem;
-	display: block;
-	img {
-		width: 100%;
-		height: auto;
-	}
+  width: 5rem;
+  height: 5rem;
+  display: block;
+  img {
+    width: 100%;
+    height: auto;
+  }
   }
   
   .nav-desktop {
     display: flex;
-    gap: 32px;
+    gap: 2rem;
     align-items: center;
   }
   
@@ -77,7 +95,7 @@
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
-    padding: 8px 0;
+    padding: 0.5rem 0;
   }
   
   .nav-link::after {
@@ -86,7 +104,7 @@
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 0.125rem;
     background: var(--color-primary);
     transition: width 0.3s ease;
   }
@@ -101,23 +119,23 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
-    gap: 4px;
+    padding: 0.5rem;
+    gap: 0.25rem;
     transition: all 0.3s ease;
   }
   
   .hamburger-line {
-    width: 24px;
-    height: 3px;
-    background: #4a5568;
-    border-radius: 2px;
+    width: 1.5rem;
+    height: 0.1875rem;
+    background: var(--color-black);
+    border-radius: 0.125rem;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
   }
   
   .hamburger.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(7px, 7px);
-    background: #667eea;
+    transform: rotate(45deg) translate(0.4375rem, 0.4375rem);
+    background: var(--color-black);
   }
   
   .hamburger.active .hamburger-line:nth-child(2) {
@@ -126,22 +144,22 @@
   }
   
   .hamburger.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-    background: #667eea;
+    transform: rotate(-45deg) translate(0.4375rem, -0.4375rem);
+    background: var(--color-black);
   }
   
   .nav-mobile {
     position: fixed;
-    top: 70px;
+    top: 4.375rem;
     left: 0;
     width: 100%;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 32px 20px;
+    padding: 2rem 1.25rem;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 1.5rem;
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
@@ -155,21 +173,21 @@
   }
   
   .nav-link-mobile {
-    color: #4a5568;
+    color: var(--color-black);
     text-decoration: none;
     font-weight: 600;
-    font-size: 18px;
-    padding: 12px 0;
+    font-size: 1.125rem;
+    padding: 0.75rem 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
-    transform: translateX(-20px);
+    transform: translateX(-1.25rem);
     opacity: 0;
     animation: slideInMobile 0.6s ease forwards;
   }
   
   .nav-link-mobile:hover {
-    color: #667eea;
-    transform: translateX(8px);
+    background: var(--color-black);
+    transform: translateX(0.5rem);
   }
   
   .nav-link-mobile:nth-child(1) {
@@ -178,6 +196,68 @@
   
   .nav-link-mobile:nth-child(2) {
     animation-delay: 0.2s;
+  }
+
+    /* Dropdown styles (desktop) */
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    color: var(--color-black);
+    padding: 0.5rem 0;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--color-white);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 0.375rem;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: flex;
+  }
+
+  .dropdown-item {
+    padding: 0.625rem 1rem;
+    color: var(--color-black);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .dropdown-item:hover {
+    background: #f5f5f5;
+  }
+
+  /* Mobile dropdown */
+
+  .dropdown-menu-mobile {
+    display: none;
+    flex-direction: column;
+    margin-left: 0.75rem;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .dropdown-item-mobile {
+    padding: 0.5rem 0;
+    color: var(--color-black);
+    text-decoration: none;
+  }
+
+  .dropdown-mobile.active .dropdown-menu-mobile {
+    display: flex;
   }
   
   @keyframes slideInMobile {
@@ -202,23 +282,23 @@
     }
     
     .nav-mobile {
-      top: 80px;
+      top: 5rem;
     }
     
     .nav-brand .logo {
       width: 4rem;
-	  height: 4rem;
+    height: 4rem;
     }
   }
   
   /* Tablet styles */
   @media (max-width: 1024px) and (min-width: 769px) {
     .container {
-      padding: 0 24px;
+      padding: 0 1.5rem;
     }
     
     .nav-desktop {
-      gap: 24px;
+      gap: 1.5rem;
     }
   }
   
@@ -229,7 +309,6 @@
 </style>
 
 <script>
-  // Mobile menu functionality
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
   const body = document.body;
@@ -237,37 +316,39 @@
   if (hamburger && mobileNav) {
     hamburger.addEventListener('click', () => {
       const isActive = hamburger.classList.contains('active');
-      
       if (isActive) {
-        // Close menu
         hamburger.classList.remove('active');
         mobileNav.classList.remove('active');
         body.classList.remove('menu-open');
       } else {
-        // Open menu
         hamburger.classList.add('active');
         mobileNav.classList.add('active');
         body.classList.add('menu-open');
       }
     });
-    
-    // Close menu when clicking on a link
-    const mobileLinks = mobileNav.querySelectorAll('.nav-link-mobile');
+
+    // Toggle mobile dropdowns
+    const dropdownToggles = mobileNav.querySelectorAll('[data-dropdown="mobile"]');
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault(); // prevent link-like behavior
+        e.stopPropagation(); // stop bubbling up to menu close
+        const parent = toggle.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+
+    // Close menu when clicking on a *real* navigation link (but not dropdown toggles)
+    const mobileLinks = mobileNav.querySelectorAll('.nav-link-mobile, .dropdown-item-mobile');
     mobileLinks.forEach(link => {
+      // Skip dropdown toggles
+      if (link.hasAttribute('data-dropdown')) return;
+
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         mobileNav.classList.remove('active');
         body.classList.remove('menu-open');
       });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
-        hamburger.classList.remove('active');
-        mobileNav.classList.remove('active');
-        body.classList.remove('menu-open');
-      }
     });
   }
 </script>
