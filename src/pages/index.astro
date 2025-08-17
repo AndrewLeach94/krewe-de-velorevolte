@@ -102,24 +102,27 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 		<section id="contact-us">
 			<h2>Get in Touch!</h2>
-			<form method="POST">
+			<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+				<label class="hidden">
+					Don’t fill this out if you’re human: <input name="bot-field" type="text" />
+				</label>
 				<label>First Name
-					<input type="text" required></input>
+					<input name="firstName" type="text" required></input>
 				</label>
 				<label>Last Name
-					<input type="text" required></input>
+					<input name="lastName" type="text" required></input>
 				</label>
 				<label class="full-row">Email
-					<input type="email" required></input>
+					<input name="email" type="email" required></input>
 				</label>
 				<label class="checkbox-label full-row">Join our email list for news and updates
-					<input type="checkbox"></input>
+					<input name="subscribeToUpdates" type="checkbox"></input>
 				</label>
 				<label class="full-row">Subject
-					<input type="text" required></input>
+					<input name="subject" type="text" required></input>
 				</label>
 				<label class="full-row">Message
-					<textarea required></textarea>
+					<textarea name="message" required></textarea>
 				</label>
 				<button type="submit" class="btn-primary">Submit</button>
 			</form>
