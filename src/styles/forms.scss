@@ -3,6 +3,7 @@
 label {
   display: flex;
   flex-direction: column;
+  font-weight: 500;
   &.full-row {
     grid-column: 1 / span 2;
   }
@@ -72,12 +73,11 @@ textarea {
     gap: 1rem;
   }
   label {
-    font-size: 1rem;
     &.full-row {
       grid-column: auto;
     }
   }
   .checkbox-label {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
 }
