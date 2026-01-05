@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import CountdownTimer from '../components/CountdownTimer.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, VELOREVOLTE_APPLICATION_URL } from '../consts';
 ---
 
 <!doctype html>
@@ -114,6 +114,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 		<section id="contact-us">
 			<h2>Get in Touch!</h2>
+			<p>We'd love to hear from you! If you're interested in joining the krewe, please fill out the <a href={VELOREVOLTE_APPLICATION_URL} target="_blank" rel="noopener noreferrer">application form</a>.</p>
+			<p>If you have questions, or just want to say hello, please fill out the form below.</p>
 			<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
 				<label class="hidden">
 					Don’t fill this out if you’re human: <input name="bot-field" type="text" />
@@ -273,6 +275,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 		#contact-us {
 			padding-top: 0;
+
+			h2 {
+				margin-bottom: 0.5rem;
+			}
 		}
 
 		@include tabletDown {
