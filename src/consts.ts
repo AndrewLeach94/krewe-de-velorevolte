@@ -9,4 +9,4 @@ export const VELOREVOLTE_PARTICIPANT_DUES_URL = 'https://www.paypal.com/ncp/paym
 export const VELOREVOLTE_GENERAL_DUES_URL = 'https://www.paypal.com/ncp/payment/VNM8YH8NRUS34';
 export const VELOREVOLTE_APPLICATION_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf5YbVz6M4kxTwqSqTzIThkG7RFaCDuVYNLHTk5804mjU7ZWw/viewform';
 
-export const CURRENT_PARADE_DATE = '1/30/2025 19:00:00';
+export const CURRENT_PARADE_DATE = '1/30/2026 19:00:00';
