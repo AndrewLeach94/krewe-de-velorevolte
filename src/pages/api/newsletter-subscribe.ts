@@ -77,39 +77,8 @@ export const POST: APIRoute = async ({ request }) => {
       }),
     });
 
-    let contactData;
-    
-    if (contactResponse.ok) {
-      contactData = await contactResponse.json();
-    } else if (contactResponse.status === 400) {
-      // Contact might already exist, try to get it
-      const getContactResponse = await fetch(`https://api.mailjet.com/v3/REST/contact/${encodeURIComponent(email)}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': authHeader,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (getContactResponse.ok) {
-        contactData = await getContactResponse.json();
-      } else {
-        const errorData = await contactResponse.json().catch(() => ({}));
-        console.error('Mailjet contact creation error:', errorData);
-        return new Response(
-          JSON.stringify({
-            success: false,
-            error: 'Unable to process subscription. Please try again later.',
-          }),
-          {
-            status: 500,
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-      }
-    } else {
+    if (!contactResponse.ok && contactResponse.status !== 400) {
+      // If not a 400 (which might mean contact exists), it's an error
       const errorData = await contactResponse.json().catch(() => ({}));
       console.error('Mailjet contact creation error:', errorData);
       return new Response(
@@ -125,6 +94,8 @@ export const POST: APIRoute = async ({ request }) => {
         }
       );
     }
+    
+    // Contact exists or was created successfully, proceed to add to list
 
     // Step 2: Add contact to the mailing list
     const addToListResponse = await fetch(
@@ -146,19 +117,29 @@ export const POST: APIRoute = async ({ request }) => {
       const errorData = await addToListResponse.json().catch(() => ({}));
       
       // Check if contact is already in the list (this is not really an error)
-      if (errorData.StatusCode === 400 && errorData.ErrorMessage?.includes('already')) {
-        return new Response(
-          JSON.stringify({
-            success: true,
-            message: 'You are already subscribed to our newsletter!',
-          }),
-          {
-            status: 200,
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+      // Mailjet returns status 400 with specific error when contact already exists in list
+      if (addToListResponse.status === 400) {
+        const errorMsg = errorData.ErrorMessage || '';
+        const errorInfo = errorData.ErrorInfo || '';
+        
+        // Check for known "already exists" patterns from Mailjet API
+        if (errorMsg.toLowerCase().includes('already') || 
+            errorMsg.toLowerCase().includes('exist') ||
+            errorInfo.toLowerCase().includes('already') ||
+            errorInfo.toLowerCase().includes('exist')) {
+          return new Response(
+            JSON.stringify({
+              success: true,
+              message: 'You are already subscribed to our newsletter!',
+            }),
+            {
+              status: 200,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+        }
       }
 
       console.error('Mailjet add to list error:', errorData);

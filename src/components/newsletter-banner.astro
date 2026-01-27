@@ -326,7 +326,7 @@
       }
       
       // Show loading state
-      const originalButtonText = submitButton.textContent;
+      const originalButtonText = submitButton.textContent || 'Subscribe';
       submitButton.textContent = 'Subscribing...';
       submitButton.disabled = true;
       emailInput.disabled = true;
