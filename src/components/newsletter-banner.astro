@@ -22,6 +22,8 @@
         placeholder="Enter your email" 
         id="newsletterEmail"
         aria-label="Email address"
+        required
+        autocomplete="email"
       />
       <button class="submit-button" type="button">Subscribe</button>
     </div>
@@ -239,7 +241,10 @@
     const banner = document.getElementById('newsletterBanner');
     const closeButton = document.getElementById('closeNewsletter');
     
-    if (!banner || !closeButton) return;
+    if (!banner || !closeButton) {
+      console.warn('Newsletter banner: Required DOM elements not found');
+      return;
+    }
     
     // Check if banner was previously dismissed
     const wasDismissed = localStorage.getItem(STORAGE_KEY);
