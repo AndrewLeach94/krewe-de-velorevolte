@@ -240,8 +240,10 @@
   function initNewsletterBanner() {
     const banner = document.getElementById('newsletterBanner');
     const closeButton = document.getElementById('closeNewsletter');
+    const submitButton = document.querySelector('.submit-button') as HTMLButtonElement;
+    const emailInput = document.getElementById('newsletterEmail') as HTMLInputElement;
     
-    if (!banner || !closeButton) {
+    if (!banner || !closeButton || !submitButton || !emailInput) {
       console.warn('Newsletter banner: Required DOM elements not found');
       return;
     }
@@ -256,8 +258,8 @@
       }, 500);
     }
     
-    // Close button handler
-    closeButton.addEventListener('click', () => {
+    // Close/dismiss banner helper
+    const dismissBanner = () => {
       banner.classList.remove('show');
       banner.classList.add('hide');
       
@@ -268,6 +270,110 @@
       setTimeout(() => {
         banner.style.display = 'none';
       }, 500);
+    };
+    
+    // Close button handler
+    closeButton.addEventListener('click', dismissBanner);
+    
+    // Email validation helper
+    const validateEmail = (email: string): boolean => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    };
+    
+    // Show message helper
+    const showMessage = (message: string, isError: boolean = false) => {
+      // Create or get message element
+      let messageEl = banner.querySelector('.newsletter-message') as HTMLElement;
+      if (!messageEl) {
+        messageEl = document.createElement('div');
+        messageEl.className = 'newsletter-message';
+        const newsletterContent = banner.querySelector('.newsletter-content');
+        if (newsletterContent) {
+          newsletterContent.appendChild(messageEl);
+        }
+      }
+      
+      messageEl.textContent = message;
+      messageEl.style.color = isError ? '#ff6b6b' : '#51cf66';
+      messageEl.style.textAlign = 'center';
+      messageEl.style.marginTop = '0.5rem';
+      messageEl.style.fontWeight = '500';
+      
+      // Remove message after 5 seconds
+      setTimeout(() => {
+        if (messageEl.parentNode) {
+          messageEl.remove();
+        }
+      }, 5000);
+    };
+    
+    // Submit handler
+    const handleSubmit = async () => {
+      const email = emailInput.value.trim();
+      
+      // Validate email
+      if (!email) {
+        showMessage('Please enter your email address', true);
+        emailInput.focus();
+        return;
+      }
+      
+      if (!validateEmail(email)) {
+        showMessage('Please enter a valid email address', true);
+        emailInput.focus();
+        return;
+      }
+      
+      // Show loading state
+      const originalButtonText = submitButton.textContent;
+      submitButton.textContent = 'Subscribing...';
+      submitButton.disabled = true;
+      emailInput.disabled = true;
+      
+      try {
+        const response = await fetch('/api/newsletter-subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          showMessage(data.message || 'Successfully subscribed!', false);
+          emailInput.value = '';
+          
+          // Dismiss banner after successful subscription
+          setTimeout(() => {
+            dismissBanner();
+          }, 2000);
+        } else {
+          showMessage(data.error || 'An error occurred. Please try again.', true);
+          submitButton.disabled = false;
+          emailInput.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      } catch (error) {
+        console.error('Newsletter subscription error:', error);
+        showMessage('Network error. Please check your connection and try again.', true);
+        submitButton.disabled = false;
+        emailInput.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    };
+    
+    // Submit button click handler
+    submitButton.addEventListener('click', handleSubmit);
+    
+    // Enter key handler for email input
+    emailInput.addEventListener('keypress', (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleSubmit();
+      }
     });
   }
   
