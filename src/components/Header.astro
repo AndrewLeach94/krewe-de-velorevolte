@@ -1,8 +1,11 @@
 ---
 import { VELOREVOLTE_PARTICIPANT_DUES_URL, BOHEME_DUES_URL, VELOREVOLTE_GENERAL_DUES_URL, VELOREVOLTE_APPLICATION_URL } from '../consts';
+import NotificationBanner from './NotificationBanner.astro';
 // Header.astro - Responsive header with animated hamburger menu
 ---
 
+
+<!-- <NotificationBanner /> Re-enable when applicable-->
 <header class="header">
   <div class="container">
     <div class="nav-brand">
@@ -59,7 +62,8 @@ import { VELOREVOLTE_PARTICIPANT_DUES_URL, BOHEME_DUES_URL, VELOREVOLTE_GENERAL_
   @use '../styles/mixins.scss' as *;
 
   .header {
-    position: fixed;
+    box-sizing: border-box;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;

@@ -1,10 +1,29 @@
 ---
+import { CURRENT_PARADE_DATE } from "../consts";
+
 // Target countdown date
-const targetDate = new Date('2026-01-30T10:00:00').getTime();
+const targetDate = new Date(CURRENT_PARADE_DATE).getTime();
+
+// Format date for display
+const date = new Date(CURRENT_PARADE_DATE);
+const month = date.toLocaleString('en-US', { month: 'long' });
+const day = date.getDate();
+const year = date.getFullYear();
+const ordinalSuffix = (day: number) => {
+  if (day > 3 && day < 21) return 'th';
+  switch (day % 10) {
+    case 1: return 'st';
+    case 2: return 'nd';
+    case 3: return 'rd';
+    default: return 'th';
+  }
+};
+const formattedDate = `${month} ${day}${ordinalSuffix(day)}, ${year}`;
+const isParadeOver = new Date() > new Date(CURRENT_PARADE_DATE);
 ---
 
-<div class="countdown">
-  <p>We Roll On January 30th, 2026</p>
+<div class={`countdown ${isParadeOver ? 'hidden' : ''}`}>
+  <p>We Roll On {formattedDate}</p>
 
   <div class="countdown-grid">
     <div class="countdown-item">
@@ -27,7 +46,9 @@ const targetDate = new Date('2026-01-30T10:00:00').getTime();
 </div>
 
 <script>
-  const targetDate = new Date('2026-01-30T10:00:00').getTime();
+import { CURRENT_PARADE_DATE } from "../consts";
+
+  const targetDate = new Date(CURRENT_PARADE_DATE).getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
@@ -99,6 +120,10 @@ const targetDate = new Date('2026-01-30T10:00:00').getTime();
     .countdown-label {
       font-size: 1rem;
     }
+  }
+
+  &.hidden {
+    display: none;
   }
 }
 
