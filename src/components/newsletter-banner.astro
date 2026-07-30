@@ -1,0 +1,386 @@
+---
+// NewsletterBanner.astro - Newsletter subscription banner component
+---
+
+<div class="newsletter-banner" id="newsletterBanner">
+  <button class="close-button" id="closeNewsletter" aria-label="Close newsletter banner">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  
+  <div class="newsletter-content">
+    <div class="newsletter-text">
+      <h3>Join the Vélorévolte Movement!</h3>
+      <p>Get the latest updates on events, parades, and bicycle advocacy in New Orleans.</p>
+    </div>
+    
+    <div class="newsletter-form">
+      <input 
+        type="email" 
+        placeholder="Enter your email" 
+        id="newsletterEmail"
+        aria-label="Email address"
+        required
+        autocomplete="email"
+      />
+      <button class="submit-button" type="button">Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use '../styles/mixins.scss' as *;
+
+  .newsletter-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-darker) 100%);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    padding: 1.5rem 2rem;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), 
+                opacity 0.5s ease;
+    
+    &.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    &.hide {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
+  .newsletter-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .newsletter-text {
+    flex: 1;
+    
+    h3 {
+      margin: 0 0 0.5rem 0;
+      color: var(--color-white);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    p {
+      margin: 0;
+      color: var(--color-white);
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex: 0 0 auto;
+    
+    input[type="email"] {
+      padding: 0.875rem 1.25rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 0.375rem;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--color-white);
+      font-size: 1rem;
+      font-family: var(--font-serif);
+      min-width: 280px;
+      transition: all 0.3s ease;
+      
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      
+      &:focus {
+        outline: none;
+        border-color: var(--color-white);
+        background: rgba(255, 255, 255, 0.25);
+      }
+    }
+  }
+
+  .submit-button {
+    padding: 0.875rem 2rem;
+    background: var(--color-white);
+    color: var(--color-primary-darker);
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    
+    &:hover {
+      background: var(--color-black);
+      color: var(--color-white);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    
+    svg {
+      width: 1rem;
+      height: 1rem;
+      stroke: var(--color-white);
+    }
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--color-white);
+      outline-offset: 2px;
+    }
+  }
+
+  // Tablet styles
+  @include tabletDown {
+    .newsletter-banner {
+      padding: 1.25rem 1.5rem 1.25rem 1.5rem;
+    }
+    
+    .newsletter-content {
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    
+    .newsletter-text {
+      text-align: center;
+      
+      h3 {
+        font-size: 1.25rem;
+      }
+      
+      p {
+        font-size: 0.9rem;
+      }
+    }
+    
+    .newsletter-form {
+      flex-direction: column;
+      width: 100%;
+      
+      input[type="email"] {
+        width: 100%;
+        min-width: auto;
+      }
+      
+      .submit-button {
+        width: 100%;
+      }
+    }
+  }
+
+  // Mobile styles
+  @include mobileOnly {
+    .newsletter-banner {
+      padding: 1rem 1rem 1rem 1rem;
+    }
+    
+    .close-button {
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+    
+    .newsletter-text {
+      h3 {
+        font-size: 1.125rem;
+      }
+      
+      p {
+        font-size: 0.875rem;
+      }
+    }
+  }
+</style>
+
+<script>
+  // Newsletter banner animation and localStorage logic
+  const STORAGE_KEY = 'newsletter-banner-dismissed';
+  
+  function initNewsletterBanner() {
+    const banner = document.getElementById('newsletterBanner');
+    const closeButton = document.getElementById('closeNewsletter');
+    const submitButton = document.querySelector('.submit-button') as HTMLButtonElement;
+    const emailInput = document.getElementById('newsletterEmail') as HTMLInputElement;
+    
+    if (!banner || !closeButton || !submitButton || !emailInput) {
+      console.warn('Newsletter banner: Required DOM elements not found');
+      return;
+    }
+    
+    // Check if banner was previously dismissed
+    const wasDismissed = localStorage.getItem(STORAGE_KEY);
+    
+    if (!wasDismissed) {
+      // Show banner with animation after a short delay
+      setTimeout(() => {
+        banner.classList.add('show');
+      }, 500);
+    }
+    
+    // Close/dismiss banner helper
+    const dismissBanner = () => {
+      banner.classList.remove('show');
+      banner.classList.add('hide');
+      
+      // Store dismissal in localStorage
+      localStorage.setItem(STORAGE_KEY, 'true');
+      
+      // Remove from DOM after animation completes
+      setTimeout(() => {
+        banner.style.display = 'none';
+      }, 500);
+    };
+    
+    // Close button handler
+    closeButton.addEventListener('click', dismissBanner);
+    
+    // Email validation helper
+    const validateEmail = (email: string): boolean => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    };
+    
+    // Show message helper
+    const showMessage = (message: string, isError: boolean = false) => {
+      // Create or get message element
+      let messageEl = banner.querySelector('.newsletter-message') as HTMLElement;
+      if (!messageEl) {
+        messageEl = document.createElement('div');
+        messageEl.className = 'newsletter-message';
+        const newsletterContent = banner.querySelector('.newsletter-content');
+        if (newsletterContent) {
+          newsletterContent.appendChild(messageEl);
+        }
+      }
+      
+      messageEl.textContent = message;
+      messageEl.style.color = isError ? '#ff6b6b' : '#51cf66';
+      messageEl.style.textAlign = 'center';
+      messageEl.style.marginTop = '0.5rem';
+      messageEl.style.fontWeight = '500';
+      
+      // Remove message after 5 seconds
+      setTimeout(() => {
+        if (messageEl.parentNode) {
+          messageEl.remove();
+        }
+      }, 5000);
+    };
+    
+    // Submit handler
+    const handleSubmit = async () => {
+      const email = emailInput.value.trim();
+      
+      // Validate email
+      if (!email) {
+        showMessage('Please enter your email address', true);
+        emailInput.focus();
+        return;
+      }
+      
+      if (!validateEmail(email)) {
+        showMessage('Please enter a valid email address', true);
+        emailInput.focus();
+        return;
+      }
+      
+      // Show loading state
+      const originalButtonText = submitButton.textContent || 'Subscribe';
+      submitButton.textContent = 'Subscribing...';
+      submitButton.disabled = true;
+      emailInput.disabled = true;
+      
+      try {
+        const response = await fetch('/api/newsletter-subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          showMessage(data.message || 'Successfully subscribed!', false);
+          emailInput.value = '';
+          
+          // Dismiss banner after successful subscription
+          setTimeout(() => {
+            dismissBanner();
+          }, 2000);
+        } else {
+          showMessage(data.error || 'An error occurred. Please try again.', true);
+          submitButton.disabled = false;
+          emailInput.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      } catch (error) {
+        console.error('Newsletter subscription error:', error);
+        showMessage('Network error. Please check your connection and try again.', true);
+        submitButton.disabled = false;
+        emailInput.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    };
+    
+    // Submit button click handler
+    submitButton.addEventListener('click', handleSubmit);
+    
+    // Enter key handler for email input
+    emailInput.addEventListener('keypress', (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleSubmit();
+      }
+    });
+  }
+  
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNewsletterBanner);
+  } else {
+    initNewsletterBanner();
+  }
+</script>
